@@ -2,11 +2,9 @@ FROM qq275860560/base
 
 MAINTAINER jiangyuanlin@163.com
 
-RUN yum -y install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm
-
-RUN yum -y install postgresql11-server 
-
-RUN yum -y install postgresql11 
+RUN yum -y install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm &&\
+    yum -y install postgresql11-server &&\
+    yum -y install postgresql11 
 
 RUN cd /usr/pgsql-11
 

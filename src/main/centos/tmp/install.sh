@@ -19,7 +19,7 @@ cd /var/lib/pgsql/11/data
 
 # 修改监听地址和端口
 cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/postgresql.conf
-   
+                                       
 # 修改远程访问权限 
 cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/pg_hba.conf
 

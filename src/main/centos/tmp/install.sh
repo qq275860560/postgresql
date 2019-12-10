@@ -24,7 +24,9 @@ cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860
 cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/pg_hba.conf
 
 # 启动
-systemctl start postgresql-11
+#systemctl start postgresql-11
+nohup su postgres -c "/usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/" 2>&1 </dev/null &
+
 # 重启
 #systemctl restart postgresql-11
 

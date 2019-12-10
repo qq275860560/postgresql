@@ -18,7 +18,7 @@ RUN cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq27
                                      
 RUN cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/pg_hba.conf
 
-RUN nohup su postgres -c "/usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/" 2>&1 </dev/null &
+RUN nohup sudo -u postgres /usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/ 2>&1 </dev/null &
  
 RUN su postgres
 

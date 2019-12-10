@@ -8,7 +8,8 @@ RUN yum -y install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-
 
 RUN cd /usr/pgsql-11
 
-RUN chmod 777 -R /usr/pgsql-11
+RUN chmod 777 -R /var/lib/pgsql
+RUN chown -R postgres /var/lib/pgsql
 
 RUN /usr/pgsql-11/bin/postgresql-11-setup initdb   -D /var/lib/pgsql/11/data/
 

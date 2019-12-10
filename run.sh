@@ -9,3 +9,5 @@ cd ${SHELL_FOLDER}
 #
 
 #(git add src README.md  || true) && (git commit -m "commit" || true) && git push
+
+docker build -t qq275860560/postgresql .

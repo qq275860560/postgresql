@@ -5,6 +5,7 @@ yum -y install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x8
 
 # 安装postgresql服务器
 yum -y install postgresql11-server 
+
 # 安装postgresql客户端
 yum -y install postgresql11 
 
@@ -23,21 +24,19 @@ cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860
 # 修改远程访问权限 
 cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/pg_hba.conf
 
-exit
-
 # 启动
 #systemctl start postgresql-11
-#nohup su postgres -c "/usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/" 2>&1 </dev/null &
+nohup su postgres -c "/usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/" 2>&1 </dev/null &
 
 # 重启
 #systemctl restart postgresql-11
 
 # 进入PostgreSQL
-#su postgres
+su postgres
 
 # 添加root用户
-#psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
+psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
 
 # 修改postgres的密码
-#psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
+psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
 

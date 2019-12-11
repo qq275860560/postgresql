@@ -18,8 +18,8 @@ RUN su postgres -c "/usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data
 RUN nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
 
 RUN su postgres                                     
-RUN psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
-RUN psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
+RUN /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
+RUN /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
 
 CMD nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
 

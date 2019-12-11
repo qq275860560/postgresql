@@ -2,32 +2,29 @@ FROM qq275860560/base
 
 MAINTAINER jiangyuanlin@163.com
 
-RUN yum -y install https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm &&\
-    yum -y install postgresql11-server &&\
-    yum -y install postgresql11 
+RUN cd /tmp && curl -O http://get.enterprisedb.com/postgresql/postgresql-9.4.9-1-linux-x64-binaries.tar.gz
 
-RUN cd /usr/pgsql-11
+RUN tar xzf postgresql-9.4.9-1-linux-x64-binaries.tar.gz -C /usr/local/
 
-RUN chmod 777 -R /var/lib/pgsql
-RUN chown -R postgres /var/lib/pgsql
+RUN echo "export PATH=/usr/local/pgsql/bin:$PATH" >> /etc/profile && source /etc/profile
 
-RUN /usr/pgsql-11/bin/postgresql-11-setup initdb  
+RUN mkdir -pv /usr/local/pgsql/data &&\
+    groupadd postgres  &&\
+    useradd -g postgres postgres &&\
+    chown -R postgres.postgres /usr/local/pgsql
 
-RUN cd /var/lib/pgsql/11/data
+RUN su postgres -c "/usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data"
+  
 
-RUN cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/postgresql.conf
-                                     
-RUN cd /var/lib/pgsql/11/data/ && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/var/lib/pgsql/11/data/pg_hba.conf
+RUN nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
 
-RUN nohup sudo -u postgres /usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/ 2>&1 </dev/null &
- 
-RUN su postgres
 
+RUN su postgres                                     
 RUN psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
-
 RUN psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
 
-CMD nohup su postgres -c "/usr/pgsql-11/bin/postmaster    -D /var/lib/pgsql/11/data/" 2>&1 </dev/null & && tail -f /var/log/lastlog
+
+CMD nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
 
 
 

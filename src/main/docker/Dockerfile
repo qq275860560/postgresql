@@ -13,16 +13,9 @@ RUN mkdir -pv /usr/local/pgsql/data &&\
     useradd -g postgres postgres &&\
     chown -R postgres.postgres /usr/local/pgsql
 
-RUN su postgres -c "/usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data"
-
-#RUN nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
-
-RUN su postgres -c "/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start"
-RUN netstat -anltp
-
-RUN su postgres                                     
-RUN /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
-RUN /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
+RUN cd /tmp &&\
+    curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh &&\
+    su - postgres -s  "/bin/bash init.sh"
 
 CMD nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
 

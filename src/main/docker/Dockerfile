@@ -13,7 +13,7 @@ RUN mkdir -pv /usr/local/pgsql/data &&\
     useradd -g postgres postgres &&\
     chown -R postgres.postgres /usr/local/pgsql
 
-RUN su - postgres -s  "cd /tmp &&  curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh && chmod 777 init.sh &&  ./init.sh"
+RUN su - postgres -s  "curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  | sh"
 
 CMD nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
 

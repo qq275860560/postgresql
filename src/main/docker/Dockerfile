@@ -15,7 +15,10 @@ RUN mkdir -pv /usr/local/pgsql/data &&\
 
 RUN su postgres -c "/usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data"
 
-RUN nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
+#RUN nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
+
+RUN su postgres -c "/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start"
+RUN netstat -anltp
 
 RUN su postgres                                     
 RUN /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres

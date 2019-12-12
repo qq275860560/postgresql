@@ -28,7 +28,7 @@ cd /usr/local/pgsql/data/ && curl -O https://raw.githubusercontent.com/qq2758605
 
 # 启动
 nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null &
-#nohup su postgres -c "/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data" 2>&1 </dev/null &
+#su postgres -c "/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start"
 
  
 # 进入PostgreSQL

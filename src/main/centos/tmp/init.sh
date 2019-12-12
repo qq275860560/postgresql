@@ -2,6 +2,8 @@
 
 /usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data 
 
+netstat -anltp
+
 /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 
  
 # 添加root用户

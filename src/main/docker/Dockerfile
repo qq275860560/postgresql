@@ -1,4 +1,4 @@
-FROM qq275860560/base
+FROM centos
 
 MAINTAINER jiangyuanlin@163.com
 
@@ -13,6 +13,7 @@ RUN groupadd postgres  &&\
     useradd -g postgres postgres &&\   
     chown -R postgres:postgres /usr/local/pgsql 
 
+RUN uname -a &&\
 RUN yum -y reinstall kde-l10n-Chinese &&\
     yum -y reinstall glibc-common &&\
     localedef -c -f UTF-8 -i zh_CN zh_CN.UFT-8

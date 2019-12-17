@@ -2,9 +2,9 @@
 
 /usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data 
 
-netstat -anltp
-
 /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 
+
+netstat -anltp
  
 # 添加root用户
 psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres

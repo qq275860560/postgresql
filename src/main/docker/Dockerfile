@@ -11,9 +11,17 @@ RUN echo "export PATH=/usr/local/pgsql/bin:$PATH" >> /etc/profile && source /etc
 RUN mkdir -pv /usr/local/pgsql/data &&\
     groupadd postgres  &&\
     useradd -g postgres postgres &&\
-    chown -R postgres.postgres /usr/local/pgsql
+    chown -R postgres:postgres /usr/local/pgsql &&\
+    chown -R postgres:postgres /usr/local/pgsql/data
 
-RUN su - postgres -s  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && ls /tmp/ "
+RUN su - postgres -s  "/usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data"
+
+RUN su - postgres -s  "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data"
+
+RUN su - postgres -s  "netstat -anltp"
+
+
+#RUN su - postgres -s  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && ls /tmp/ "
 
 CMD nohup su postgres -c "/usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
 

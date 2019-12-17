@@ -1,6 +1,7 @@
 !/bin/bash
 
 #初始化
+mkdir -pv /usr/local/pgsql/data
 /usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data
 
 # 修改监听地址和端口

@@ -8,13 +8,11 @@ RUN cd /tmp && tar xzf postgresql-9.4.9-1-linux-x64-binaries.tar.gz -C /usr/loca
 
 RUN echo "export PATH=/usr/local/pgsql/bin:$PATH" >> /etc/profile && source /etc/profile
 
-RUN mkdir -pv /usr/local/pgsql/data &&\
-    groupadd postgres  &&\
+RUN groupadd postgres  &&\
     useradd -g postgres postgres &&\   
-    chown -R postgres:postgres /usr/local/pgsql &&\
-    chown -R postgres:postgres /usr/local/pgsql/data
+    chown -R postgres:postgres /usr/local/pgsql 
 
-
+# 初始化
 RUN su postgres -c  " cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh && ./init.sh "
 
 CMD su postgres -c "nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog

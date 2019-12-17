@@ -1,4 +1,6 @@
 !/bin/bash
+set -xev
+source /etc/profile
 
 #初始化
 mkdir -pv /usr/local/pgsql/data

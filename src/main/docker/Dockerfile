@@ -13,9 +13,9 @@ RUN groupadd postgres  &&\
     useradd -g postgres postgres &&\   
     chown -R postgres:postgres /usr/local/pgsql 
 
-RUN yum remove glibc-common -y  &&\
-    yum install glibc-common -y  &&\
-    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8
+RUN yum -y install  kde-l10n-Chinese &&\
+    yum -y reinstall glibc-common &&\
+    localedef -c -f UTF-8 -i zh_CN zh_CN.UFT-8
 
 # 初始化
 RUN su postgres -c  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh  && sh ./init.sh "

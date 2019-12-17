@@ -1,4 +1,4 @@
-!/bin/bash
+!/bin/sh
 
 # 下载postgresql
 cd /tmp && curl -O http://get.enterprisedb.com/postgresql/postgresql-9.4.9-1-linux-x64-binaries.tar.gz

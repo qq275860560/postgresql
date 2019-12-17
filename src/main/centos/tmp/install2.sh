@@ -2,14 +2,12 @@
 
 # 下载postgresql
 cd /tmp && curl -O http://get.enterprisedb.com/postgresql/postgresql-9.4.9-1-linux-x64-binaries.tar.gz
+
 # 解压
 tar xzf postgresql-9.4.9-1-linux-x64-binaries.tar.gz -C /usr/local/
 
 # 设置环境变量 
 echo "export PATH=/usr/local/pgsql/bin:$PATH" >> /etc/profile && source /etc/profile
-
-# 创建数据目录
-mkdir -pv /usr/local/pgsql/data
 
 # 创建用户
 groupadd postgres 

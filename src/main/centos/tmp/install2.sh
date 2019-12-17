@@ -15,5 +15,5 @@ useradd -g postgres postgres
 chown -R postgres:postgres /usr/local/pgsql
 
 # 初始化
-su postgres -c  " cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh && ./init.sh "
+su postgres -c  " cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh && sh ./init.sh "
 

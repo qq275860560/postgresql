@@ -20,7 +20,7 @@ RUN  yum -y install  langpacks-zh_CN.noarch && yum -y reinstall glibc-common   &
      echo 'export LC_ALL=zh_CN.UTF-8'  >> /etc/profile && source /etc/profile
 
 # 初始化
-RUN su postgres -c  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh  && sh ./init.sh "
+RUN su postgres -c  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 /tmp/init.sh  && sh /tmp/init.sh "
 
 CMD su postgres -c "nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data" 2>&1 </dev/null & && tail -f /var/log/lastlog
                     

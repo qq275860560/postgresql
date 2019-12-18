@@ -20,10 +20,10 @@ nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 2>&1 </dev/null 
 #/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start
 
 # 添加root用户
-/usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
+psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
 
 # 修改postgres的密码
-/usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
+psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
 
 # 登录
 #psql -h 127.0.0.1 -p 5432 -U root -d postgres

@@ -13,9 +13,11 @@ RUN groupadd postgres  &&\
     useradd -g postgres postgres &&\   
     chown -R postgres:postgres /usr/local/pgsql 
 
-RUN yum -y install kde-l10n-Chinese &&\
-    yum -y reinstall glibc-common &&\
-    localedef -c -f UTF-8 -i zh_CN zh_CN.UFT-8
+# 中文语言     
+RUN  yum -y install  langpacks-zh_CN.noarch && yum -y reinstall glibc-common && localedef -c -f UTF-8 -i zh_CN zh_CN.utf8  &&\
+     echo 'export LANG=zh_CN.UTF-8'  >> /etc/profile && source /etc/profile &&\
+     echo 'export LANGUAGE=zh_CN:zh'  >> /etc/profile && source /etc/profile   &&\
+     echo 'export LC_ALL=zh_CN.UTF-8'  >> /etc/profile && source /etc/profile
 
 # 初始化
 RUN su postgres -c  "cd /tmp && curl -O https://raw.githubusercontent.com/qq275860560/postgresql/master/src/main/centos/tmp/init.sh  && chmod 777 ./init.sh  && sh ./init.sh "

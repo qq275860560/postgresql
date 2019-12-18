@@ -16,11 +16,14 @@ cd /usr/local/pgsql/data/ && curl -O https://raw.githubusercontent.com/qq2758605
 nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 2>&1 </dev/null &
 #/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start
 
+netstat -anltp
+ls /usr/local/pgsql/bin/psql
+
 # 添加root用户
-psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
+/usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
 
 # 修改postgres的密码
-psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
+/usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "ALTER USER postgres WITH PASSWORD '123456'" postgres
 
 # 登录
 #psql -h 127.0.0.1 -p 5432 -U root -d postgres

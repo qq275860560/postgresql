@@ -2,9 +2,6 @@
 set -xev
 source /etc/profile
 
-# 设置环境变量 
-echo "export PATH=/usr/local/pgsql/bin:$PATH" >> /etc/profile && source /etc/profile
-
 #初始化
 mkdir -pv /usr/local/pgsql/data
 /usr/local/pgsql/bin/initdb -E utf8 -D /usr/local/pgsql/data

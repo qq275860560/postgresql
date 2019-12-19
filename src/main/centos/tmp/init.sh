@@ -15,6 +15,7 @@ cd /usr/local/pgsql/data/ && curl -O https://raw.githubusercontent.com/qq2758605
 # 启动
 nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 2>&1 </dev/null &
 #/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start
+sleep 10s
 
 netstat -anltp
 ls /usr/local/pgsql/bin/psql

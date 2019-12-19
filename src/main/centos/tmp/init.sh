@@ -17,9 +17,6 @@ nohup /usr/local/pgsql/bin/postgres    -D /usr/local/pgsql/data 2>&1 </dev/null 
 #/usr/local/pgsql/bin/pg_ctl    -D /usr/local/pgsql/data start
 sleep 10s
 
-netstat -anltp
-ls /usr/local/pgsql/bin/psql
-
 # 添加root用户
 /usr/local/pgsql/bin/psql -p5432 -Upostgres -S -c "create user root with password '123456'" postgres
 
